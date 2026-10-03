@@ -1,6 +1,6 @@
 # 消灯の日まで（制作途中の記入例）
 
-廃止が決まった離島の灯台に家出してきた 14 歳の汐里と、停止命令が出ても「灯を絶やすな」の命令が優先されて止まれない旧式の灯台守ロボット LK-7（ナナ）の話。媒体は読み切り漫画と短編映画。
+廃止が決まった離島の灯台に家出してきた 14 歳の汐里と、停止命令が出ても「灯を絶やすな」の命令が優先されて止まれない旧式の灯台守ロボット LK-7（ナナ）の話。媒体は短編小説と短編映画。
 
 このテンプレートのコマンドを一通り使って作った、**制作途中の状態**の見本です。`風の手紙` が「各ファイルの埋め方」の見本なのに対し、こちらは長い作品の運用（状態記録・伏線台帳・確定）の見本です。
 
@@ -8,8 +8,9 @@
 
 1. `STATUS.md` — 作品の現在地。どこまで決まり、何が残っているか
 2. `canon/premise.md` → `canon/characters/` → `canon/locations/todai.md` — 正典
-3. `story/scenes/010-shinobikomi.md` → `output/manga/010-shinobikomi.md` — 骨格と、それを書き起こしたネーム
-4. `story/state.md`・`story/threads.md` — 010・020 を確定した後のキャラの状態と伏線台帳
+3. `output/novel/010-shinobikomi.md` → `output/novel/020-nana.md` — 小説本文。作品の中身をつかむならここから
+4. `story/scenes/010-shinobikomi.md` — 小説の元になった骨格。映画版 `output/film/010-shinobikomi.md` と読み比べると、同じ骨格からの書き分けがわかる
+5. `story/state.md`・`story/threads.md` — 010・020 を確定した後のキャラの状態と伏線台帳
 
 ## 見どころ
 
@@ -18,9 +19,10 @@
 | 確定（`/finalize`）後のシーン：`summary` と「このシーンの後で変わったこと」 | `story/scenes/010-shinobikomi.md`、`020-nana.md` |
 | シーンをまたいで更新された状態 | `story/state.md`（最後に更新したシーン：020） |
 | 伏線台帳（ID・回収予定は「未定」） | `story/threads.md`、各シーンの `## 伏線` |
-| 基準の媒体だけを確定する | 漫画 010・020 は fixed、映画 010 は draft |
-| 右綴じのめくりを意識したネーム（13 ページ） | `output/manga/010-shinobikomi.md` |
-| 作者の手直しを正典に戻す流れ | 漫画 010 の「未読 12 件」の場面 → `canon/characters/shiori.md` の「恐れ」 |
+| 基準の媒体だけを確定する | 小説 010・020 は fixed、映画 010 は draft |
+| 小説全体の決めごと（視点・時制・表記） | `output/novel/README.md` |
+| 作者の手直しを正典に戻す流れ | 010 の「未読十二件」の場面 → `canon/characters/shiori.md` の「恐れ」 |
+| 想定媒体の変更 | 制作途中で読み切り漫画をやめ、小説に切り替えた。`canon/premise.md` を `/canonize` で変更し、小説版を書き起こして `/finalize` で確定し直した |
 | 壁打ちの記録とボツ案 | `workshop/sessions/`、`workshop/rejected.md` |
 
 ## 意図的に残しているもの

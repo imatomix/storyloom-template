@@ -78,8 +78,9 @@ if [ -d examples ]; then
     examples/shoutou-no-hi/story/scenes/010-shinobikomi.md
     examples/shoutou-no-hi/story/scenes/020-nana.md
     examples/shoutou-no-hi/story/scenes/030-haikou.md
-    examples/shoutou-no-hi/output/manga/010-shinobikomi.md
-    examples/shoutou-no-hi/output/manga/020-nana.md
+    examples/shoutou-no-hi/output/novel/README.md
+    examples/shoutou-no-hi/output/novel/010-shinobikomi.md
+    examples/shoutou-no-hi/output/novel/020-nana.md
     examples/shoutou-no-hi/output/film/010-shinobikomi.md
     examples/shoutou-no-hi/workshop/ideas.md
     examples/shoutou-no-hi/workshop/rejected.md
