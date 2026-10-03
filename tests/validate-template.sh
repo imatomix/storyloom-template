@@ -30,7 +30,7 @@ REQUIRED_FILES=(
   story/scenes/_template.md
   output/README.md
   output/film/.gitkeep
-  output/novel/.gitkeep
+  output/novel/README.md
   output/manga/.gitkeep
   story/state.md
   story/threads.md
@@ -168,6 +168,14 @@ grep -q '急かされても' .claude/skills/kickoff/SKILL.md || fail "/kickoff �
 grep -q '集計から除く' .claude/skills/status/SKILL.md || fail "/status が state.md・threads.md を集計から除いていない"
 grep -q '付随して更新したファイル' .claude/skills/canonize/SKILL.md || fail "/canonize に、付随ファイルの status の扱いがない"
 grep -q 'related にこのシーン' "$finalize" || fail "/finalize に、台帳と状態記録の related 更新がない"
+
+for heading in "## 作品全体の決めごと" "## 文体の見本"; do
+  grep -qx "$heading" output/novel/README.md 2>/dev/null || fail "output/novel/README.md に見出し「${heading}」がない"
+done
+for aspect in "文の長さ" "語尾" "段落の長さ" "描写の密度" "会話と地の文の比率"; do
+  grep -q "$aspect" .claude/skills/draft/references/novel.md || fail "novel.md に文体の観点「${aspect}」がない"
+done
+grep -q 'output/<媒体>/README.md' .claude/skills/draft/SKILL.md || fail "/draft が媒体の README（決めごと・見本）を読んでいない"
 
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
