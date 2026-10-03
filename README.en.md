@@ -51,6 +51,7 @@ Files are separated by how settled they are.
 | `/check [scope]` | List contradictions with canon and unresolved foreshadowing |
 | `/draft <film\|novel\|manga> <scene>` | Write a scene as a screenplay, prose, or manga name |
 | `/finalize <scene>` | Finalize an edited manuscript and update the scene summary, character state, and foreshadowing ledger |
+| `/revise <scene>` | Measure prose style (sentence length, endings, paragraphs) and revise it against the work's style rules and sample |
 | `/status` | Summarize progress in STATUS.md and suggest next steps |
 
 `/kickoff`, `/canonize`, and `/finalize` run only when the author invokes them.
@@ -60,6 +61,10 @@ Typical flow (order is not fixed):
 ```
 /kickoff → /brainstorm → /develop → /canonize → (build story/) → /draft → (author edits) → /finalize → /check → /status
 ```
+
+## Adjusting prose style
+
+Novel style is set in `output/novel/README.md`: style rules (point of view, tense, sentence length, sentence endings, paragraph length, descriptive density, dialogue ratio) and a style sample. `/draft` and `/revise` follow the sample over the rules. `/revise` measures the manuscript with Python 3 (falls back to reading without numbers), proposes before/after edits, and applies only the ones you approve.
 
 ## Canon guard
 

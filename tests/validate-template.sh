@@ -7,6 +7,7 @@ fail() { echo "NG: $1"; failures=$((failures + 1)); }
 
 REQUIRED_FILES=(
   .gitignore
+  .claude/skills/revise/SKILL.md
   .claude/skills/revise/scripts/prose-stats.py
   tests/revise/prose-stats.test.sh
   tests/revise/fixture.md
@@ -148,6 +149,9 @@ grep -qx 'model: sonnet' .claude/agents/continuity-checker.md 2>/dev/null \
 
 for doc in CLAUDE.md README.md; do
   grep -q '/finalize' "$doc" 2>/dev/null || fail "$doc に /finalize の説明がない"
+done
+for doc in CLAUDE.md README.md README.en.md; do
+  grep -q '/revise' "$doc" 2>/dev/null || fail "$doc に /revise の説明がない"
 done
 
 finalize=.claude/skills/finalize/SKILL.md
