@@ -35,6 +35,8 @@ REQUIRED_FILES=(
   .claude/skills/develop/SKILL.md
   .claude/skills/canonize/SKILL.md
   .claude/skills/status/SKILL.md
+  .claude/agents/continuity-checker.md
+  .claude/skills/check/SKILL.md
 )
 
 for f in "${REQUIRED_FILES[@]}"; do
