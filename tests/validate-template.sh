@@ -41,6 +41,15 @@ REQUIRED_FILES=(
   .claude/skills/draft/references/film.md
   .claude/skills/draft/references/novel.md
   .claude/skills/draft/references/manga.md
+  examples/README.md
+  examples/kaze-no-tegami/canon/premise.md
+  examples/kaze-no-tegami/canon/characters/tsumugi.md
+  examples/kaze-no-tegami/canon/characters/rokuro.md
+  examples/kaze-no-tegami/canon/glossary.md
+  examples/kaze-no-tegami/story/scenes/010-arrival.md
+  examples/kaze-no-tegami/output/novel/010-arrival.md
+  examples/kaze-no-tegami/output/film/010-arrival.md
+  examples/kaze-no-tegami/output/manga/010-arrival.md
 )
 
 for f in "${REQUIRED_FILES[@]}"; do
