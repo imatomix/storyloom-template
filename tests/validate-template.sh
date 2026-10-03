@@ -124,6 +124,15 @@ for doc in CLAUDE.md README.md; do
   grep -q '/finalize' "$doc" 2>/dev/null || fail "$doc に /finalize の説明がない"
 done
 
+finalize=.claude/skills/finalize/SKILL.md
+grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で登録済みの伏線との照合手順がない"
+grep -q '既に fixed' "$finalize" || fail "/finalize に、確定済みシーンの再確定の扱いがない"
+grep -q '対象より後のシーン' "$finalize" || fail "/finalize に、後のシーンの状態を上書きしない規則がない"
+grep -q '骨格の修正案' "$finalize" || fail "/finalize に、原稿と骨格の食い違いの同期がない"
+grep -q '行は消さず' story/threads.md || fail "story/threads.md に、行を消さず dropped にする規則がない"
+grep -E '^\| `story/` .*/finalize' CLAUDE.md >/dev/null || fail "CLAUDE.md の story/ の行に /finalize がない"
+grep -E '^\| `output/` .*/finalize' CLAUDE.md >/dev/null || fail "CLAUDE.md の output/ の行に /finalize がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
