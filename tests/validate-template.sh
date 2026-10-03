@@ -27,6 +27,10 @@ REQUIRED_FILES=(
   output/film/.gitkeep
   output/novel/.gitkeep
   output/manga/.gitkeep
+  story/state.md
+  story/threads.md
+  canon/locations/_template.md
+  workshop/research/.gitkeep
   CLAUDE.md
   README.md
   STATUS.md
@@ -91,6 +95,11 @@ for agent in .claude/agents/*.md; do
   grep -Eq '^description: .+' "$agent" || fail "$agent: description がない"
   grep -Eq '^tools: .+' "$agent" || fail "$agent: tools がない"
 done
+
+grep -q '^summary:' story/scenes/_template.md 2>/dev/null \
+  || fail "story/scenes/_template.md の frontmatter に summary がない"
+grep -qx '| ID | 種類 | 内容 | 張ったシーン | 回収予定 | 回収したシーン | 状態 |' story/threads.md 2>/dev/null \
+  || fail "story/threads.md に台帳の見出し行がない"
 
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"

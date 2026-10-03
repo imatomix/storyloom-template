@@ -10,6 +10,7 @@
 |---|---|
 | `premise.md` | ジャンル・テーマ・トーン・ターゲット・ログライン |
 | `world/` | 世界観。1 トピック 1 ファイル（`_template.md` を複製） |
+| `locations/` | 場所。1 か所 1 ファイル（`_template.md` を複製） |
 | `characters/` | 登場人物。1 人 1 ファイル（`_template.md` を複製） |
 | `glossary.md` | 用語集 |
 | `timeline.md` | 作中の出来事の年表 |
