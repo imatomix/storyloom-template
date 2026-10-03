@@ -64,6 +64,25 @@ if [ -d examples ]; then
     examples/kaze-no-tegami/story/state.md
     examples/kaze-no-tegami/story/threads.md
     examples/kaze-no-tegami/canon/locations/sakaue-yubinkyoku.md
+    examples/shoutou-no-hi/README.md
+    examples/shoutou-no-hi/STATUS.md
+    examples/shoutou-no-hi/canon/premise.md
+    examples/shoutou-no-hi/canon/glossary.md
+    examples/shoutou-no-hi/canon/timeline.md
+    examples/shoutou-no-hi/canon/world/era.md
+    examples/shoutou-no-hi/canon/characters/shiori.md
+    examples/shoutou-no-hi/canon/characters/lk-7.md
+    examples/shoutou-no-hi/canon/locations/todai.md
+    examples/shoutou-no-hi/story/state.md
+    examples/shoutou-no-hi/story/threads.md
+    examples/shoutou-no-hi/story/scenes/010-shinobikomi.md
+    examples/shoutou-no-hi/story/scenes/020-nana.md
+    examples/shoutou-no-hi/story/scenes/030-haikou.md
+    examples/shoutou-no-hi/output/manga/010-shinobikomi.md
+    examples/shoutou-no-hi/output/manga/020-nana.md
+    examples/shoutou-no-hi/output/film/010-shinobikomi.md
+    examples/shoutou-no-hi/workshop/ideas.md
+    examples/shoutou-no-hi/workshop/rejected.md
   )
 fi
 
@@ -82,7 +101,8 @@ while IFS= read -r f; do
   fi
   sed -n '2,/^---$/p' "$f" | grep -Eq '^status: (draft|review|fixed)( |$)' \
     || fail "$f: status が draft | review | fixed のどれでもない"
-done < <(find canon story output examples -name '*.md' ! -name 'README.md' 2>/dev/null)
+# 記入例の workshop/ と STATUS.md は frontmatter を持たないので、作品の canon・story・output だけを見る
+done < <(find canon story output examples/*/canon examples/*/story examples/*/output -name '*.md' ! -name 'README.md' 2>/dev/null)
 
 for dir in .claude/skills/*/; do
   [ -d "$dir" ] || continue

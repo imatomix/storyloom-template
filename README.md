@@ -12,7 +12,9 @@ AI（Claude Code）と一緒に、映像・小説・漫画の物語を作るた�
    git init
    ```
 2. Claude Code を起動して `/kickoff` を実行する
-3. 記入例は `examples/kaze-no-tegami/` を参照（不要になったら削除してかまいません）
+3. 記入例は `examples/` を参照（不要になったら削除してかまいません）
+   - `kaze-no-tegami/` — 短い作品。各ファイルの埋め方の見本
+   - `shoutou-no-hi/` — 制作途中の作品。状態記録・伏線台帳・確定の運用の見本
 
 必要なもの: Claude Code、jq（canon/ 保護フックが使用。macOS は標準で入っています）
 
