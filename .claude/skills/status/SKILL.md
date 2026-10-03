@@ -7,7 +7,7 @@ description: canon/・story/・output/ の frontmatter の status を集計し�
 
 ## 手順
 
-1. 集計する。対象は `canon/`、`story/`、`output/film/`、`output/novel/`、`output/manga/` の `.md`。`README.md` と `_template.md` と `examples/` は除く
+1. 集計する。対象は `canon/`、`story/`、`output/film/`、`output/novel/`、`output/manga/` の `.md`。`README.md` と `_template.md` と `examples/` は除く。`story/state.md` と `story/threads.md` は書き換え続ける記録なので、status の集計から除く
    - 各ファイルの frontmatter の `status:` を読み、領域ごとに draft / review / fixed を数える
    - frontmatter が無い・status が不正なファイルは、別に一覧にして作者に知らせる
 2. 現在地を把握する

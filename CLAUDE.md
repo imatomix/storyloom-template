@@ -54,7 +54,7 @@ updated: YYYY-MM-DD
 - シーン: `story/scenes/NNN-<slug>.md`（010, 020… と 10 刻み）
 - 媒体別の出力: `output/<film|novel|manga>/<シーンと同じファイル名>.md`
 - キャラ・世界観・場所: `canon/characters/<slug>.md`、`canon/world/<slug>.md`、`canon/locations/<slug>.md`（slug はローマ字の小文字とハイフン）
-- 伏線: `T` + 2 桁連番（T01, T02…）。新規は台帳の最大 ID + 1
+- 伏線: `T` + 2 桁連番（T01, T02…）。新規は台帳の最大 ID + 1。回収予定はシーン番号（未定なら「未定」）
 
 ## git
 

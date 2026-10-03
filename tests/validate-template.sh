@@ -133,6 +133,16 @@ grep -q '行は消さず' story/threads.md || fail "story/threads.md に、行�
 grep -E '^\| `story/` .*/finalize' CLAUDE.md >/dev/null || fail "CLAUDE.md の story/ の行に /finalize がない"
 grep -E '^\| `output/` .*/finalize' CLAUDE.md >/dev/null || fail "CLAUDE.md の output/ の行に /finalize がない"
 
+grep -q '回収予定はシーン番号' story/threads.md || fail "story/threads.md に回収予定の書き方（シーン番号）の規則がない"
+for skill in develop finalize; do
+  grep -q '回収予定はシーン番号' ".claude/skills/$skill/SKILL.md" || fail "/$skill に回収予定の書き方（シーン番号）の規則がない"
+done
+grep -q 'シーン番号でない' .claude/agents/continuity-checker.md || fail "continuity-checker が回収予定の書き方の不備を検出しない"
+grep -q '急かされても' .claude/skills/kickoff/SKILL.md || fail "/kickoff に、急かされても全文提示前に書かない規則がない"
+grep -q '集計から除く' .claude/skills/status/SKILL.md || fail "/status が state.md・threads.md を集計から除いていない"
+grep -q '付随して更新したファイル' .claude/skills/canonize/SKILL.md || fail "/canonize に、付随ファイルの status の扱いがない"
+grep -q 'related にこのシーン' "$finalize" || fail "/finalize に、台帳と状態記録の related 更新がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
