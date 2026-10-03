@@ -112,6 +112,11 @@ for skill in draft finalize; do
     || fail ".claude/skills/$skill/SKILL.md が story/state.md を参照していない"
 done
 
+grep -q '^## 伏線' .claude/agents/continuity-checker.md 2>/dev/null \
+  || fail "continuity-checker の出力形式に「伏線」節がない"
+grep -qx 'model: sonnet' .claude/agents/continuity-checker.md 2>/dev/null \
+  || fail "continuity-checker に model: sonnet がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
