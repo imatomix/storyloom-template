@@ -7,6 +7,9 @@ fail() { echo "NG: $1"; failures=$((failures + 1)); }
 
 REQUIRED_FILES=(
   .gitignore
+  .claude/skills/revise/scripts/prose-stats.py
+  tests/revise/prose-stats.test.sh
+  tests/revise/fixture.md
   LICENSE
   README.en.md
   .claude/settings.json
@@ -171,6 +174,7 @@ for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
 done
 
 bash tests/hooks/guard-canon.test.sh >/dev/null || fail "フックのテストが失敗（bash tests/hooks/guard-canon.test.sh で詳細を確認）"
+bash tests/revise/prose-stats.test.sh >/dev/null || fail "prose-stats のテストが失敗（bash tests/revise/prose-stats.test.sh で詳細を確認）"
 
 [ "$failures" -eq 0 ] || { echo "検査失敗: $failures 件"; exit 1; }
 echo "テンプレート検査: すべて成功"
