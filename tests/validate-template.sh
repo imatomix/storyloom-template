@@ -37,6 +37,10 @@ REQUIRED_FILES=(
   .claude/skills/status/SKILL.md
   .claude/agents/continuity-checker.md
   .claude/skills/check/SKILL.md
+  .claude/skills/draft/SKILL.md
+  .claude/skills/draft/references/film.md
+  .claude/skills/draft/references/novel.md
+  .claude/skills/draft/references/manga.md
 )
 
 for f in "${REQUIRED_FILES[@]}"; do
