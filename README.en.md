@@ -12,7 +12,7 @@ The author leads; Claude asks questions, proposes options, catches contradiction
 - **The author decides.** Claude offers two or three options and digs in with questions. Settled facts (the *canon*) are only changed when the author approves, and a hook enforces this mechanically.
 - **One outline, three media.** Medium-independent scene outlines can be turned into a screenplay (with a shot list), novel prose, or a manga name (storyboard script).
 - **Holds together over long works.** Each time the author finalizes a manuscript, the template updates each character's current state, a foreshadowing ledger, and one-line scene summaries. `/check` finds contradictions and unresolved setups.
-- **Readable examples.** `examples/` includes the novel version of an in-progress short story, "Until the Lights Go Out" (消灯の日まで).
+- **Readable examples.** `examples/` includes the novel version of an in-progress short story, "Until the Lights Go Out" (消灯の日まで). This story was created by AI (Claude Code) during the template's QA process, based on answers from someone playing the author.
 
 ## Getting started
 
