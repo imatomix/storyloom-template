@@ -32,6 +32,8 @@
 - 新しい案を出す前に `workshop/rejected.md` を確認し、同じ案を出さない。あえて再提案するなら、前回との違いを明示する
 - 会話中に出た良いアイデアは `workshop/ideas.md` に追記してよい。追記したら作者に伝える
 - 長い検討は `workshop/sessions/YYYY-MM-DD-<topic>.md` に要点を残す
+- 物語の進行で変わる状態は `story/state.md`、伏線と未回収の問いは `story/threads.md` に記録する。どちらも原稿の確定時に `/finalize` で更新する。新しい伏線をシーンに張るときは `/develop` で台帳に登録する
+- 取材資料は `workshop/research/` にある。時代考証や専門的な描写の前に確認する
 
 ## frontmatter
 
@@ -51,7 +53,8 @@ updated: YYYY-MM-DD
 
 - シーン: `story/scenes/NNN-<slug>.md`（010, 020… と 10 刻み）
 - 媒体別の出力: `output/<film|novel|manga>/<シーンと同じファイル名>.md`
-- キャラ・世界観: `canon/characters/<slug>.md`、`canon/world/<slug>.md`（slug はローマ字の小文字とハイフン）
+- キャラ・世界観・場所: `canon/characters/<slug>.md`、`canon/world/<slug>.md`、`canon/locations/<slug>.md`（slug はローマ字の小文字とハイフン）
+- 伏線: `T` + 2 桁連番（T01, T02…）。新規は台帳の最大 ID + 1
 
 ## git
 
@@ -68,4 +71,5 @@ updated: YYYY-MM-DD
 | `/canonize <ファイルや案>` | 下書きを正典に昇格させる |
 | `/check [範囲]` | 正典との矛盾を検出する |
 | `/draft <媒体> <シーン>` | シーンを脚本・小説・ネームに書き起こす |
+| `/finalize <シーン>` | 直し終えた原稿を確定し、状態記録と伏線台帳を更新する |
 | `/status` | 進捗を集計し、次にやることを提案する |

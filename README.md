@@ -39,15 +39,24 @@ AI（Claude Code）と一緒に、映像・小説・漫画の物語を作るた�
 | `/canonize <ファイルや案>` | 下書きを正典に昇格させる（差分を見て承認） |
 | `/check [範囲]` | story/・output/ と正典の矛盾を一覧にする |
 | `/draft <film\|novel\|manga> <シーン>` | シーンを脚本・小説・ネームに書き起こす |
+| `/finalize <シーン>` | 直し終えた原稿を確定し、1 行あらすじ・キャラの状態・伏線台帳を更新する |
 | `/status` | 進捗を集計して STATUS.md を更新し、次の一手を提案する |
 
 ## 典型的な流れ
 
 ```
-/kickoff → /brainstorm → /develop → /canonize → （story/ を組み立てる）→ /draft → /check → /status
+/kickoff → /brainstorm → /develop → /canonize → （story/ を組み立てる）→ /draft → （作者が直す）→ /finalize → /check → /status
 ```
 
 順番は固定ではありません。行き来しながら進めてください。
+
+## 長い作品の一貫性
+
+- `story/state.md` — キャラの現在の状態（居場所・知っていること・持ち物など）
+- `story/threads.md` — 伏線台帳。張った伏線と未回収の問い
+- シーンの `summary` — 1 行あらすじ。`/draft` は全シーンを読まずに、これで流れをつかむ
+
+いずれも作者が原稿を直し終えた後の `/finalize` で更新します。`/check` は回収予定を過ぎた伏線や、シーン順に見た状態の矛盾も検出します。
 
 ## canon/ の保護
 
@@ -57,6 +66,10 @@ Claude が `canon/` に Edit/Write するたびに、フック（`.claude/hooks/
 ## 個人設定
 
 自分だけの設定は `.claude/settings.local.json` に書いてください（git 管理外）。
+
+## モデルの指定
+
+矛盾チェック（`.claude/agents/continuity-checker.md`）は読むファイルが多いため、`model: sonnet` を指定しています。細かな矛盾の見落としが気になる場合は `model: inherit`（会話と同じモデル）に変えてください。
 
 ## 動作確認
 

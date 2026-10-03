@@ -117,6 +117,10 @@ grep -q '^## 伏線' .claude/agents/continuity-checker.md 2>/dev/null \
 grep -qx 'model: sonnet' .claude/agents/continuity-checker.md 2>/dev/null \
   || fail "continuity-checker に model: sonnet がない"
 
+for doc in CLAUDE.md README.md; do
+  grep -q '/finalize' "$doc" 2>/dev/null || fail "$doc に /finalize の説明がない"
+done
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
