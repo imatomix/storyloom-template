@@ -7,5 +7,6 @@
 | `ideas.md` | アイデアの受け皿。思いついたら日付付きで追記 |
 | `sessions/` | 対話・検討の記録（`YYYY-MM-DD-<topic>.md`） |
 | `rejected.md` | ボツ案と理由。同じ案を何度も検討しないための記録 |
+| `drafts/` | キャラ・世界観の下書き（`/develop` が作成、`/canonize` で canon/ へ） |
 
 ここで固まった設定は `/canonize` で `canon/` に昇格させます。

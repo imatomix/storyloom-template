@@ -30,6 +30,11 @@ REQUIRED_FILES=(
   CLAUDE.md
   README.md
   STATUS.md
+  .claude/skills/kickoff/SKILL.md
+  .claude/skills/brainstorm/SKILL.md
+  .claude/skills/develop/SKILL.md
+  .claude/skills/canonize/SKILL.md
+  .claude/skills/status/SKILL.md
 )
 
 for f in "${REQUIRED_FILES[@]}"; do
