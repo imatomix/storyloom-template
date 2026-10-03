@@ -7,6 +7,8 @@ fail() { echo "NG: $1"; failures=$((failures + 1)); }
 
 REQUIRED_FILES=(
   .gitignore
+  LICENSE
+  README.en.md
   .claude/settings.json
   .claude/hooks/guard-canon.sh
   canon/README.md
