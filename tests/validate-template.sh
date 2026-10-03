@@ -46,6 +46,7 @@ REQUIRED_FILES=(
   .claude/skills/draft/references/novel.md
   .claude/skills/draft/references/manga.md
   .claude/skills/finalize/SKILL.md
+  .claude/skills/develop/references/structure.md
 )
 
 # examples/ は削除してよいと案内しているので、残っているときだけ中身を検査する
@@ -101,6 +102,15 @@ grep -q '^summary:' story/scenes/_template.md 2>/dev/null \
   || fail "story/scenes/_template.md の frontmatter に summary がない"
 grep -qx '| ID | 種類 | 内容 | 張ったシーン | 回収予定 | 回収したシーン | 状態 |' story/threads.md 2>/dev/null \
   || fail "story/threads.md に台帳の見出し行がない"
+
+for skill in draft develop status finalize; do
+  grep -q 'story/threads.md' ".claude/skills/$skill/SKILL.md" 2>/dev/null \
+    || fail ".claude/skills/$skill/SKILL.md が story/threads.md を参照していない"
+done
+for skill in draft finalize; do
+  grep -q 'story/state.md' ".claude/skills/$skill/SKILL.md" 2>/dev/null \
+    || fail ".claude/skills/$skill/SKILL.md が story/state.md を参照していない"
+done
 
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
