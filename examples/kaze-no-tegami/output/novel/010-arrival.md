@@ -1,5 +1,5 @@
 ---
-status: draft
+status: fixed
 related:
   - story/scenes/010-arrival.md
 updated: 2026-10-03

@@ -61,6 +61,9 @@ if [ -d examples ]; then
     examples/kaze-no-tegami/output/novel/010-arrival.md
     examples/kaze-no-tegami/output/film/010-arrival.md
     examples/kaze-no-tegami/output/manga/010-arrival.md
+    examples/kaze-no-tegami/story/state.md
+    examples/kaze-no-tegami/story/threads.md
+    examples/kaze-no-tegami/canon/locations/sakaue-yubinkyoku.md
   )
 fi
 
