@@ -1,4 +1,9 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(python3 .claude/skills/revise/scripts/prose-stats.py:*)"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {

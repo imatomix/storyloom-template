@@ -100,6 +100,8 @@ done
 [ -x .claude/hooks/guard-canon.sh ] || fail ".claude/hooks/guard-canon.sh に実行権限がない"
 jq -e '.hooks.PreToolUse[0].hooks[0].command | test("guard-canon.sh")' .claude/settings.json >/dev/null 2>&1 \
   || fail ".claude/settings.json に guard-canon.sh が登録されていない"
+jq -e '.permissions.allow | index("Bash(python3 .claude/skills/revise/scripts/prose-stats.py:*)")' .claude/settings.json >/dev/null 2>&1 \
+  || fail ".claude/settings.json で prose-stats.py の実行が許可されていない"
 
 while IFS= read -r f; do
   if [ "$(head -1 "$f")" != "---" ]; then
