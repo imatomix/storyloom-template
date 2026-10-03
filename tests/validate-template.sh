@@ -27,6 +27,9 @@ REQUIRED_FILES=(
   output/film/.gitkeep
   output/novel/.gitkeep
   output/manga/.gitkeep
+  CLAUDE.md
+  README.md
+  STATUS.md
 )
 
 for f in "${REQUIRED_FILES[@]}"; do
@@ -61,6 +64,10 @@ for agent in .claude/agents/*.md; do
   grep -qx "name: $name" "$agent" || fail "$agent: name がファイル名 $name と一致しない"
   grep -Eq '^description: .+' "$agent" || fail "$agent: description がない"
   grep -Eq '^tools: .+' "$agent" || fail "$agent: tools がない"
+done
+
+for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
+  grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
 
 bash tests/hooks/guard-canon.test.sh >/dev/null || fail "フックのテストが失敗（bash tests/hooks/guard-canon.test.sh で詳細を確認）"
