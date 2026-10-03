@@ -11,6 +11,7 @@ REQUIRED_FILES=(
   .claude/skills/revise/scripts/prose-stats.py
   tests/revise/prose-stats.test.sh
   tests/revise/fixture.md
+  tests/revise/fixture-edge.md
   LICENSE
   README.en.md
   .claude/settings.json

@@ -3,10 +3,14 @@
 import re
 import sys
 
-SENTENCE_END = re.compile(r"(?<=[。！？])")
-DIALOGUE_OPENERS = ("「", "『")
+# 「行く。」のように句点の直後に閉じ括弧が来る場合は、括弧の外まで一文とみなす
+SENTENCE_END = re.compile(r"(?<=[。！？])(?![」』）])")
+DIALOGUE_CLOSERS = {"「": "」", "『": "』"}
 SCENE_BREAK = "◇"
 PRESENT_ENDINGS = set("うくすつぬふむゆるぐずづぶぷいだ")
+U_ROW = set("うくすつぬふむゆるぐずづぶぷ")
+# 「行くんだ」「なんだ」「のだ」は現在形。「しゃがみこんだ」「並んだ」は過去形
+NOT_PAST_BEFORE_NDA = U_ROW | set("たなの")
 SHORT_MAX = 15
 MEDIUM_MAX = 35
 
@@ -20,8 +24,23 @@ def strip_frontmatter(text):
 
 
 def split_paragraphs(body):
-    blocks = [b.strip() for b in re.split(r"\n\s*\n", body)]
-    return [b for b in blocks if b and b != SCENE_BREAK]
+    # 空行で区切る原稿も、空行なしで 1 行 1 段落の原稿も同じに扱えるよう、行を段落とする
+    lines = [line.strip() for line in body.splitlines()]
+    return [line for line in lines if line and line != SCENE_BREAK]
+
+
+def split_dialogue(paragraph):
+    """会話で始まる段落を、会話と、その後ろに続く地の文に分ける。"""
+    closer = DIALOGUE_CLOSERS[paragraph[0]]
+    depth = 0
+    for i, char in enumerate(paragraph):
+        if char == paragraph[0]:
+            depth += 1
+        elif char == closer:
+            depth -= 1
+            if depth == 0:
+                return paragraph[: i + 1], paragraph[i + 1:].strip()
+    return paragraph, ""
 
 
 def split_sentences(paragraph):
@@ -31,6 +50,8 @@ def split_sentences(paragraph):
 def ending_of(sentence):
     core = sentence.rstrip("。！？")
     if core.endswith("た"):
+        return "past"
+    if core.endswith("んだ") and len(core) >= 3 and core[-3] not in NOT_PAST_BEFORE_NDA:
         return "past"
     if core and core[-1] in PRESENT_ENDINGS:
         return "present"
@@ -53,9 +74,17 @@ def longest_run(items):
 
 def measure(text):
     paragraphs = split_paragraphs(strip_frontmatter(text))
-    dialogue = [p for p in paragraphs if p.startswith(DIALOGUE_OPENERS)]
-    narrative = [split_sentences(p) for p in paragraphs if not p.startswith(DIALOGUE_OPENERS)]
-    sentences = [s for paragraph in narrative for s in paragraph]
+    dialogue = []
+    narrative = []
+    sentences = []
+    for paragraph in paragraphs:
+        if paragraph[0] in DIALOGUE_CLOSERS:
+            line, rest = split_dialogue(paragraph)
+            dialogue.append(line)
+            sentences.extend(split_sentences(rest))
+        else:
+            narrative.append(split_sentences(paragraph))
+            sentences.extend(narrative[-1])
     lengths = [len(s.rstrip("。！？")) for s in sentences]
     endings = [ending_of(s) for s in sentences]
     count = len(sentences)
@@ -70,7 +99,7 @@ def measure(text):
         f" / 現在形 {ratio(endings.count('present'), count):.0%}"
         f" / 体言止め・その他 {ratio(endings.count('other'), count):.0%}"
         f" / 同じ語尾の最大連続 {longest_run(endings)}",
-        f"段落: {len(paragraphs)} / 地の文の段落あたり {ratio(count, len(narrative)):.1f} 文"
+        f"段落: {len(paragraphs)} / 地の文の段落あたり {ratio(sum(len(p) for p in narrative), len(narrative)):.1f} 文"
         f" / 1 文だけの段落 {ratio(sum(1 for p in narrative if len(p) == 1), len(narrative)):.0%}",
     ])
 

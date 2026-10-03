@@ -21,6 +21,18 @@ else
   echo "NG: 計測値が期待と違う"; echo "--- 実際"; echo "$output"; failures=$((failures + 1))
 fi
 
+# 空行の無い原稿、会話の後ろの地の文、括弧内の句点、「〜んだ」の過去形
+edge=$(python3 "$script" tests/revise/fixture-edge.md 2>&1)
+expected_edge='地の文: 4 文 / 会話: 1 行（会話の比率 20%）
+文の長さ: 平均 9.0 字 / 最長 12 字 / 短 100% / 中 0% / 長 0%
+語尾: た 75% / 現在形 25% / 体言止め・その他 0% / 同じ語尾の最大連続 3
+段落: 4 / 地の文の段落あたり 1.0 文 / 1 文だけの段落 100%'
+if [ "$edge" = "$expected_edge" ]; then
+  echo "ok: 境界ケースの計測値"
+else
+  echo "NG: 境界ケースの計測値が期待と違う"; echo "--- 実際"; echo "$edge"; failures=$((failures + 1))
+fi
+
 empty=$(mktemp)
 printf -- '---\nstatus: draft\n---\n' > "$empty"
 python3 "$script" "$empty" >/dev/null 2>&1 && echo "ok: 本文が空でも落ちない" || { echo "NG: 本文が空で失敗"; failures=$((failures + 1)); }
