@@ -45,6 +45,7 @@ REQUIRED_FILES=(
   .claude/skills/draft/references/film.md
   .claude/skills/draft/references/novel.md
   .claude/skills/draft/references/manga.md
+  .claude/skills/finalize/SKILL.md
 )
 
 # examples/ は削除してよいと案内しているので、残っているときだけ中身を検査する
