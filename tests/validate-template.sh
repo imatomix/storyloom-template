@@ -9,6 +9,24 @@ REQUIRED_FILES=(
   .gitignore
   .claude/settings.json
   .claude/hooks/guard-canon.sh
+  canon/README.md
+  canon/premise.md
+  canon/glossary.md
+  canon/timeline.md
+  canon/world/_template.md
+  canon/characters/_template.md
+  workshop/README.md
+  workshop/ideas.md
+  workshop/rejected.md
+  workshop/sessions/.gitkeep
+  story/README.md
+  story/synopsis.md
+  story/structure.md
+  story/scenes/_template.md
+  output/README.md
+  output/film/.gitkeep
+  output/novel/.gitkeep
+  output/manga/.gitkeep
 )
 
 for f in "${REQUIRED_FILES[@]}"; do
