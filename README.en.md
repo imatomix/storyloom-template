@@ -26,7 +26,7 @@ The author leads; Claude asks questions, proposes options, catches contradiction
    - `kaze-no-tegami/` — a short piece showing how to fill in each file
    - `shoutou-no-hi/` — a work in progress showing how state, foreshadowing, and finalizing work over several scenes
 
-Requirements: Claude Code and jq (used by the canon guard hook; bundled with macOS 15 and later. Without jq, every write asks for confirmation).
+Requirements: Claude Code and jq (used by the canon guard hook; bundled with macOS 15 and later. Without jq, every write asks for confirmation). With Python 3, `/revise` measures prose style numerically (optional).
 
 ## How files are organized
 
