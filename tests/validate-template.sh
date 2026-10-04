@@ -204,6 +204,8 @@ leftover=$(grep -rln 'ネーム\|ショット表' CLAUDE.md README.md README.en.
 grep -q '^## 使い方のコツ' README.md || fail "README.md に「使い方のコツ」がない"
 grep -q '^## Tips' README.en.md || fail "README.en.md に「Tips」がない"
 
+grep -q '3〜4 秒' .claude/skills/draft/references/film.md || fail "film.md に、ト書き中心の場面の尺の見積もり方がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
