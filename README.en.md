@@ -2,16 +2,33 @@
 
 [日本語](README.md)
 
-A template for writing stories — films, novels, and manga — together with AI ([Claude Code](https://docs.claude.com/en/docs/claude-code/overview)).
-The author leads; Claude asks questions, proposes options, catches contradictions, and drafts. There is no code: just Markdown files plus Claude Code skills and a hook.
+**Not a template for making AI write your story. A workspace that keeps AI from breaking the story you write with it.**
+
+A template for writing films, novels, and manga with [Claude Code](https://docs.claude.com/en/docs/claude-code/overview). There is no code: just Markdown files plus Claude Code skills and a hook.
 
 > The commands, templates, and examples are written in Japanese, and Claude will converse in Japanese by default. You can ask Claude to translate `CLAUDE.md` and the skills if you want to work in another language.
 
-## Features
+## Why
 
-- **The author decides.** Claude offers two or three options and digs in with questions. Settled facts (the *canon*) are only changed when the author approves, and a hook enforces this mechanically.
-- **One outline, three media.** Medium-independent scene outlines and a scene design (how each part is shown) can be turned into a screenplay, novel prose, or a manga text storyboard.
-- **Holds together over long works.** Each time the author finalizes a manuscript, the template updates each character's current state, a foreshadowing ledger, and one-line scene summaries. `/check` finds contradictions and unresolved setups.
+When you work on a long story with AI:
+
+- It forgets settings you decided earlier
+- Settings quietly change
+- Scenes contradict each other (a character holds an item they lost two scenes ago)
+- It decides things the author should decide
+
+## How it prevents that
+
+- **Files are separated by how settled they are.** Settled facts go in `canon/`, the story outline in `story/`, ideas under consideration in `workshop/`, manuscripts in `output/`.
+- **Only the author can settle things.** The canon changes only when the author approves it through `/canonize`. A hook asks for confirmation every time Claude tries to write there.
+- **State and foreshadowing are tracked, and contradictions are found.** Each time a manuscript is finalized (`/finalize`), character state and the foreshadowing ledger are updated. `/check` lists contradictions in settings and timeline, and unresolved setups.
+- **The author decides.** Claude asks questions and offers two or three options. The author chooses.
+- **Your work is a Git repository.** You can trace when and how the canon changed.
+
+## What else it does
+
+- **Scene design, then three media.** Decide with the author how each part of a scene is shown, then write it as a screenplay, novel prose, or a manga text storyboard.
+- **Prose style tuning.** Measure novel prose and revise it toward the author's style rules and sample (`/revise`).
 - **Readable examples.** `examples/` includes the novel version of an in-progress short story, "Until the Lights Go Out" (消灯の日まで). This story was created by AI (Claude) during the template's QA process; no human wrote any part of it, including the author's side of the conversation.
 
 ## Getting started
