@@ -184,6 +184,10 @@ for aspect in "文の長さ" "語尾" "段落の長さ" "描写の密度" "会�
 done
 grep -q 'output/<媒体>/README.md' .claude/skills/draft/SKILL.md || fail "/draft が媒体の README（決めごと・見本）を読んでいない"
 
+for heading in "## シーン設計" "### 全体" "### 場面" "### 媒体ごとの分量と狙い"; do
+  grep -qx "$heading" story/scenes/_template.md || fail "story/scenes/_template.md に「${heading}」がない"
+done
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
