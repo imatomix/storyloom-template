@@ -35,7 +35,7 @@ Files are separated by how settled they are.
 | Folder | Meaning | Does Claude write here? |
 |---|---|---|
 | `canon/` | Canon: settled facts | Only through `/canonize`, with the author's approval |
-| `story/` | Story outline (medium-independent) | When asked, and via `/develop` and `/finalize` |
+| `story/` | Story outline (medium-independent) | When asked, and via `/develop`, `/finalize`, and `/draft` (scene design only) |
 | `workshop/` | Workspace: ideas, discussions, rejected ideas, research | Freely |
 | `output/` | Manuscripts per medium | Via `/draft`; `/finalize` only changes their status |
 | `examples/` | Examples | Never (reference only) |

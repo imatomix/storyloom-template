@@ -18,7 +18,7 @@
 | フォルダ | 意味 | あなたが書いてよいか |
 |---|---|---|
 | `canon/` | 正典（確定した設定） | `/canonize`（と `/kickoff` での `premise.md`）の中で、作者が承認したときだけ |
-| `story/` | 物語の骨格 | 作者の依頼、または `/develop`・`/finalize` で |
+| `story/` | 物語の骨格 | 作者の依頼、または `/develop`・`/finalize`・`/draft`（シーン設計のみ）で |
 | `workshop/` | 作業場 | 自由に |
 | `output/` | 媒体別の成果物 | 作者の依頼、または `/draft`・`/revise` で。`/finalize` は status だけを変える |
 | `examples/` | 記入例 | 書かない。参照のみ。正典として扱わない |

@@ -69,7 +69,7 @@ workshop/rejected.md に案 2 を理由付きで追加しました。
 | フォルダ | 意味 | Claude が書くか |
 |---|---|---|
 | `canon/` | 正典。確定した設定 | `/canonize` で作者が承認したときだけ |
-| `story/` | 物語の骨格（媒体に依存しない） | 依頼されたとき、`/develop`・`/finalize` で |
+| `story/` | 物語の骨格（媒体に依存しない） | 依頼されたとき、`/develop`・`/finalize`・`/draft`（シーン設計のみ）で |
 | `workshop/` | 作業場。アイデア・検討・ボツ案・取材資料 | 自由に |
 | `output/` | 媒体別の成果物 | `/draft` で。`/finalize` は status だけを変える |
 | `examples/` | 記入例 | 書かない（参照のみ） |

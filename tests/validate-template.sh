@@ -206,6 +206,14 @@ grep -q '^## Tips' README.en.md || fail "README.en.md に「Tips」がない"
 
 grep -q '3〜4 秒' .claude/skills/draft/references/film.md || fail "film.md に、ト書き中心の場面の尺の見積もり方がない"
 
+grep -q '場所か時間が変わる場面の変わり目' .claude/skills/draft/references/film.md || fail "film.md の柱の確認が、場所か時間が変わる場面に限定されていない"
+grep -q '項目が未記入' .claude/skills/draft/SKILL.md || fail "/draft に、設計が空かどうかの判断基準がない"
+grep -q '想定媒体に無い' .claude/skills/draft/SKILL.md || fail "/draft に、想定媒体に無い媒体の扱いがない"
+for doc in CLAUDE.md README.md; do
+  grep -E '^\| `story/` .*/draft' "$doc" >/dev/null || fail "$doc の story/ の行に /draft（シーン設計）がない"
+done
+grep -E '^\| `story/` .*/draft' README.en.md >/dev/null || fail "README.en.md の story/ の行に /draft がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
