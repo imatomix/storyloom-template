@@ -1,5 +1,5 @@
 ---
-status: fixed
+status: draft
 related:
   - story/scenes/010-shinobikomi.md
 updated: 2026-10-04

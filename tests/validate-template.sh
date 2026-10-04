@@ -184,6 +184,36 @@ for aspect in "文の長さ" "語尾" "段落の長さ" "描写の密度" "会�
 done
 grep -q 'output/<媒体>/README.md' .claude/skills/draft/SKILL.md || fail "/draft が媒体の README（決めごと・見本）を読んでいない"
 
+for heading in "## シーン設計" "### 全体" "### 場面" "### 媒体ごとの分量と狙い"; do
+  grep -qx "$heading" story/scenes/_template.md || fail "story/scenes/_template.md に「${heading}」がない"
+done
+
+grep -q '## シーン設計' .claude/skills/draft/SKILL.md || fail "/draft がシーン設計を扱っていない"
+grep -q '書き終えた後の確認' .claude/skills/draft/SKILL.md || fail "/draft が書き終えた後の確認を行っていない"
+grep -q 'シーン設計' .claude/skills/develop/SKILL.md || fail "/develop がシーン設計に触れていない"
+
+for guide in film manga novel; do
+  grep -q '^## 書き終えた後の確認' ".claude/skills/draft/references/$guide.md" || fail "$guide.md に「書き終えた後の確認」がない"
+done
+grep -q 'ショット表' .claude/skills/draft/references/film.md && fail "film.md にショット表が残っている"
+grep -q '^## 描写の技法' .claude/skills/draft/references/novel.md || fail "novel.md に「描写の技法」がない"
+grep -q '大きさ・位置' .claude/skills/draft/references/manga.md || fail "manga.md にコマの項目（大きさ・位置）がない"
+
+leftover=$(grep -rln 'ネーム\|ショット表' CLAUDE.md README.md README.en.md .claude output canon story workshop 2>/dev/null)
+[ -z "$leftover" ] || fail "旧い用語（ネーム・ショット表）が残っている: $(echo $leftover)"
+grep -q '^## 使い方のコツ' README.md || fail "README.md に「使い方のコツ」がない"
+grep -q '^## Tips' README.en.md || fail "README.en.md に「Tips」がない"
+
+grep -q '3〜4 秒' .claude/skills/draft/references/film.md || fail "film.md に、ト書き中心の場面の尺の見積もり方がない"
+
+grep -q '場所か時間が変わる場面の変わり目' .claude/skills/draft/references/film.md || fail "film.md の柱の確認が、場所か時間が変わる場面に限定されていない"
+grep -q '項目が未記入' .claude/skills/draft/SKILL.md || fail "/draft に、設計が空かどうかの判断基準がない"
+grep -q '想定媒体に無い' .claude/skills/draft/SKILL.md || fail "/draft に、想定媒体に無い媒体の扱いがない"
+for doc in CLAUDE.md README.md; do
+  grep -E '^\| `story/` .*/draft' "$doc" >/dev/null || fail "$doc の story/ の行に /draft（シーン設計）がない"
+done
+grep -E '^\| `story/` .*/draft' README.en.md >/dev/null || fail "README.en.md の story/ の行に /draft がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
