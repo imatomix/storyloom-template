@@ -192,6 +192,13 @@ grep -q '## シーン設計' .claude/skills/draft/SKILL.md || fail "/draft が�
 grep -q '書き終えた後の確認' .claude/skills/draft/SKILL.md || fail "/draft が書き終えた後の確認を行っていない"
 grep -q 'シーン設計' .claude/skills/develop/SKILL.md || fail "/develop がシーン設計に触れていない"
 
+for guide in film manga novel; do
+  grep -q '^## 書き終えた後の確認' ".claude/skills/draft/references/$guide.md" || fail "$guide.md に「書き終えた後の確認」がない"
+done
+grep -q 'ショット表' .claude/skills/draft/references/film.md && fail "film.md にショット表が残っている"
+grep -q '^## 描写の技法' .claude/skills/draft/references/novel.md || fail "novel.md に「描写の技法」がない"
+grep -q '大きさ・位置' .claude/skills/draft/references/manga.md || fail "manga.md にコマの項目（大きさ・位置）がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
