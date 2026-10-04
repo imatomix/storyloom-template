@@ -188,6 +188,10 @@ for heading in "## シーン設計" "### 全体" "### 場面" "### 媒体ごと�
   grep -qx "$heading" story/scenes/_template.md || fail "story/scenes/_template.md に「${heading}」がない"
 done
 
+grep -q '## シーン設計' .claude/skills/draft/SKILL.md || fail "/draft がシーン設計を扱っていない"
+grep -q '書き終えた後の確認' .claude/skills/draft/SKILL.md || fail "/draft が書き終えた後の確認を行っていない"
+grep -q 'シーン設計' .claude/skills/develop/SKILL.md || fail "/develop がシーン設計に触れていない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
