@@ -35,7 +35,7 @@ updated: YYYY-MM-DD
 <!-- /finalize が書きます -->
 
 ## シーン設計
-<!-- 「どう見せるか」の設計。/draft が最初に作り、作者の承認を得てから本文を書く。見本: docs/qa/scene-design-sample-010.md -->
+<!-- 「どう見せるか」の設計。/draft が最初に作り、作者の承認を得てから本文を書く。見本: examples/shoutou-no-hi/story/scenes/010-shinobikomi.md -->
 
 ### 全体
 - **このシーンの核**：
