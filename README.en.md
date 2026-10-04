@@ -10,7 +10,7 @@ The author leads; Claude asks questions, proposes options, catches contradiction
 ## Features
 
 - **The author decides.** Claude offers two or three options and digs in with questions. Settled facts (the *canon*) are only changed when the author approves, and a hook enforces this mechanically.
-- **One outline, three media.** Medium-independent scene outlines can be turned into a screenplay (with a shot list), novel prose, or a manga name (storyboard script).
+- **One outline, three media.** Medium-independent scene outlines and a scene design (how each part is shown) can be turned into a screenplay, novel prose, or a manga text storyboard.
 - **Holds together over long works.** Each time the author finalizes a manuscript, the template updates each character's current state, a foreshadowing ledger, and one-line scene summaries. `/check` finds contradictions and unresolved setups.
 - **Readable examples.** `examples/` includes the novel version of an in-progress short story, "Until the Lights Go Out" (消灯の日まで). This story was created by AI (Claude) during the template's QA process; no human wrote any part of it, including the author's side of the conversation.
 
@@ -49,7 +49,7 @@ Files are separated by how settled they are.
 | `/develop <target>` | Dig into one character, world topic, location, scene, or structure and draft it |
 | `/canonize <file or idea>` | Promote a draft to canon (review the diff and approve) |
 | `/check [scope]` | List contradictions with canon and unresolved foreshadowing |
-| `/draft <film\|novel\|manga> <scene>` | Write a scene as a screenplay, prose, or manga name |
+| `/draft <film\|novel\|manga> <scene>` | Design the scene, then write it as a screenplay, prose, or a manga text storyboard |
 | `/finalize <scene>` | Finalize an edited manuscript and update the scene summary, character state, and foreshadowing ledger |
 | `/revise <scene>` | Measure prose style (sentence length, endings, paragraphs) and revise it against the work's style rules and sample |
 | `/status` | Summarize progress in STATUS.md and suggest next steps |
@@ -61,6 +61,15 @@ Typical flow (order is not fixed):
 ```
 /kickoff → /brainstorm → /develop → /canonize → (build story/) → /draft → (author edits) → /finalize → /check → /status
 ```
+
+## Tips
+
+Output depth depends on what you give Claude.
+
+- **Avoid "up to you."** Pick from the options or answer concretely, even in a few words.
+- **Write the style sample yourself** in `output/novel/README.md`.
+- **Decide the scene's showpiece, emotional peak, and one unforgettable detail yourself** in the scene design.
+- **Set length targets before drafting** (characters, minutes, pages).
 
 ## Adjusting prose style
 

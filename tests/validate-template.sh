@@ -199,6 +199,11 @@ grep -q 'ショット表' .claude/skills/draft/references/film.md && fail "film.
 grep -q '^## 描写の技法' .claude/skills/draft/references/novel.md || fail "novel.md に「描写の技法」がない"
 grep -q '大きさ・位置' .claude/skills/draft/references/manga.md || fail "manga.md にコマの項目（大きさ・位置）がない"
 
+leftover=$(grep -rln 'ネーム\|ショット表' CLAUDE.md README.md README.en.md .claude output canon story workshop 2>/dev/null)
+[ -z "$leftover" ] || fail "旧い用語（ネーム・ショット表）が残っている: $(echo $leftover)"
+grep -q '^## 使い方のコツ' README.md || fail "README.md に「使い方のコツ」がない"
+grep -q '^## Tips' README.en.md || fail "README.en.md に「Tips」がない"
+
 for heading in "## 進捗" "## 未解決の問い" "## 次にやること"; do
   grep -qx "$heading" STATUS.md 2>/dev/null || fail "STATUS.md に見出し「${heading}」がない"
 done
