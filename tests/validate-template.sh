@@ -184,6 +184,7 @@ grep -q '選ばれなかったログライン案は `workshop/rejected.md`' "$ki
 grep -q '別案' "$kickoff" || fail "/kickoff が、選ばれなかった案を ideas.md に別案として残していない"
 
 grep -q '→ 正典' .claude/skills/canonize/SKILL.md || fail "/canonize が、正典に入れた ideas.md の候補に印を付けていない"
+grep -q '入れないと決めた候補' .claude/skills/canonize/SKILL.md || fail "/canonize が、正典に入れないと決めた ideas.md の候補を rejected.md に移していない"
 grep -q '→ 正典' .claude/skills/status/SKILL.md || fail "/status が、正典に入れた ideas.md の候補を処理済みとして扱っていない"
 
 finalize=.claude/skills/finalize/SKILL.md
