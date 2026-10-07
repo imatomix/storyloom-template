@@ -157,6 +157,10 @@ done
 for doc in CLAUDE.md README.md README.en.md; do
   grep -q '/revise' "$doc" 2>/dev/null || fail "$doc に /revise の説明がない"
 done
+for doc in CLAUDE.md README.md README.en.md; do
+  grep -q '/interview' "$doc" 2>/dev/null || fail "$doc に /interview の説明がない"
+done
+grep -q '/interview' .claude/skills/develop/SKILL.md || fail "/develop がキャラの次の一手に /interview を案内していない"
 
 finalize=.claude/skills/finalize/SKILL.md
 grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で登録済みの伏線との照合手順がない"
