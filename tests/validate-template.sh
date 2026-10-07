@@ -163,6 +163,22 @@ done
 grep -q '/interview' .claude/skills/develop/SKILL.md || fail "/develop がキャラの次の一手に /interview を案内していない"
 grep -q '時点はシーン番号' .claude/skills/develop/SKILL.md || fail "/develop の /interview の案内に、時点の書き方がない"
 
+grep -q 'リポジトリのルートからのパス' CLAUDE.md || fail "CLAUDE.md に、related をルートからのパスで書く規則がない"
+related_ng=$(mktemp)
+while IFS= read -r f; do
+  sed -n '2,/^---$/p' "$f" | awk '/^related:/{r=1;next} /^[a-z_]+:/{r=0} r && /^  - /{print}' | sed 's/^  - //' | while IFS= read -r rel; do
+    case "$rel" in
+      canon/*|story/*|output/*|workshop/*) ;;
+      *) echo "NG: $f: related の「${rel}」がリポジトリのルートからのパスでない" ;;
+    esac
+  done
+done < <(find canon story output examples/*/canon examples/*/story examples/*/output -name '*.md' ! -name 'README.md' 2>/dev/null) > "$related_ng"
+if [ -s "$related_ng" ]; then
+  cat "$related_ng"
+  failures=$((failures + $(wc -l < "$related_ng")))
+fi
+rm -f "$related_ng"
+
 finalize=.claude/skills/finalize/SKILL.md
 grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で登録済みの伏線との照合手順がない"
 grep -q '既に fixed' "$finalize" || fail "/finalize に、確定済みシーンの再確定の扱いがない"

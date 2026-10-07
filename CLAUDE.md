@@ -42,12 +42,12 @@
 ```yaml
 ---
 status: draft   # draft | review | fixed
-related: []     # 関連ファイルの相対パス
+related: []     # 関連ファイルの、リポジトリのルートからのパス（例: canon/premise.md）
 updated: YYYY-MM-DD
 ---
 ```
 
-ファイルを更新したら `updated` を今日の日付にする。
+ファイルを更新したら `updated` を今日の日付にする。`related` は、そのファイルの置き場所にかかわらず `canon/`・`story/`・`output/` から書く（`../premise.md` や `scenes/010-x.md` のようには書かない）。
 
 ## 命名
 
