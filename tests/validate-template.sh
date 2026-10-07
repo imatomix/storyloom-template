@@ -185,6 +185,9 @@ interview=.claude/skills/interview/SKILL.md
 grep -q '知らないこと' "$interview" 2>/dev/null || fail "/interview に、その時点で知らないことは答えない規則がない"
 grep -q '漏らさない' "$interview" 2>/dev/null || fail "/interview に、伏線の答えを漏らさない規則がない"
 grep -q '書き込むのは `workshop/` だけ' "$interview" 2>/dev/null || fail "/interview に、書き込み先が workshop/ だけである規則がない"
+grep -q '回収したシーンが時点より後' "$interview" 2>/dev/null || fail "/interview の漏洩防止が、時点までに回収されたかを基準にしていない"
+grep -q '最後に更新したシーン」より後' "$interview" 2>/dev/null || fail "/interview に、state.md より後の時点の扱いがない"
+grep -q '時点を決めてから読む' "$interview" 2>/dev/null || fail "/interview が、時点を決める前に状態記録を読んでしまう"
 for ref in story/state.md story/threads.md; do
   grep -q "$ref" "$interview" 2>/dev/null || fail "/interview が $ref を参照していない"
 done
