@@ -64,6 +64,7 @@ Files are separated by how settled they are.
 | `/kickoff` | Decide the premise (genre, theme, logline, …) |
 | `/brainstorm [topic]` | Widen ideas through questions and options |
 | `/develop <target>` | Dig into one character, world topic, location, scene, or structure and draft it |
+| `/interview <character> [scene]` | Answer the author's questions in character, knowing only what the character knows at that scene. Afterwards, summarize new facts and gaps against canon in workshop/ |
 | `/canonize <file or idea>` | Promote a draft to canon (review the diff and approve) |
 | `/check [scope]` | List contradictions with canon and unresolved foreshadowing |
 | `/draft <film\|novel\|manga> <scene>` | Design the scene, then write it as a screenplay, prose, or a manga text storyboard |

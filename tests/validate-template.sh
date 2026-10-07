@@ -53,6 +53,7 @@ REQUIRED_FILES=(
   .claude/skills/draft/references/novel.md
   .claude/skills/draft/references/manga.md
   .claude/skills/finalize/SKILL.md
+  .claude/skills/interview/SKILL.md
   .claude/skills/develop/references/structure.md
 )
 
@@ -156,6 +157,10 @@ done
 for doc in CLAUDE.md README.md README.en.md; do
   grep -q '/revise' "$doc" 2>/dev/null || fail "$doc に /revise の説明がない"
 done
+for doc in CLAUDE.md README.md README.en.md; do
+  grep -q '/interview' "$doc" 2>/dev/null || fail "$doc に /interview の説明がない"
+done
+grep -q '/interview' .claude/skills/develop/SKILL.md || fail "/develop がキャラの次の一手に /interview を案内していない"
 
 finalize=.claude/skills/finalize/SKILL.md
 grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で登録済みの伏線との照合手順がない"
@@ -175,6 +180,18 @@ grep -q '急かされても' .claude/skills/kickoff/SKILL.md || fail "/kickoff �
 grep -q '集計から除く' .claude/skills/status/SKILL.md || fail "/status が state.md・threads.md を集計から除いていない"
 grep -q '付随して更新したファイル' .claude/skills/canonize/SKILL.md || fail "/canonize に、付随ファイルの status の扱いがない"
 grep -q 'related にこのシーン' "$finalize" || fail "/finalize に、台帳と状態記録の related 更新がない"
+
+interview=.claude/skills/interview/SKILL.md
+grep -q '知らないこと' "$interview" 2>/dev/null || fail "/interview に、その時点で知らないことは答えない規則がない"
+grep -q '漏らさない' "$interview" 2>/dev/null || fail "/interview に、伏線の答えを漏らさない規則がない"
+grep -q '書き込むのは `workshop/` だけ' "$interview" 2>/dev/null || fail "/interview に、書き込み先が workshop/ だけである規則がない"
+grep -q '回収したシーンが時点より後' "$interview" 2>/dev/null || fail "/interview の漏洩防止が、時点までに回収されたかを基準にしていない"
+grep -q '最後に更新したシーン」より後' "$interview" 2>/dev/null || fail "/interview に、state.md より後の時点の扱いがない"
+grep -q '時点を決めてから読む' "$interview" 2>/dev/null || fail "/interview が、時点を決める前に状態記録を読んでしまう"
+grep -q '正典の候補を `workshop/ideas.md` に追記する' "$interview" 2>/dev/null || fail "/interview が、正典の候補を ideas.md に残していない（/status が拾えない）"
+for ref in story/state.md story/threads.md; do
+  grep -q "$ref" "$interview" 2>/dev/null || fail "/interview が $ref を参照していない"
+done
 
 for heading in "## 作品全体の決めごと" "## 文体の見本"; do
   grep -qx "$heading" output/novel/README.md 2>/dev/null || fail "output/novel/README.md に見出し「${heading}」がない"
