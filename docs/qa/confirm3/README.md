@@ -7,6 +7,7 @@
 - 題材：『四十五リットル』。亡くなった祖母の家を、30 代の兄妹（千秋・直哉）が売却の引き渡しまでの三日間で片付ける短編小説（1〜2 万字）
 - 順番：`/kickoff` → `/develop 妹` → `/interview 千秋 一日目` → `/status` → `/canonize` → `/develop シーン` → `/draft novel 010` → `/finalize 010` → `/check` → `/interview 直哉 010` → `/interview 千秋 010`
 - すべて `claude -p` と `--continue` で動かし、作者役として受け答えした
+- 作った作品は、ファイルを直した後の規則に合わせて、記入例 `examples/yonjugo-rittoru/` に入れた
 - `-p` では、canon/ への書き込みはフックで止まる（確認済み）。作者が承認する回だけ、QA 用の複製でフックを一時的に外した
 
 ## うまく動いたこと
