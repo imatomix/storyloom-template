@@ -24,6 +24,7 @@
 | 文体の決めごと・見本と推敲 | `output/novel/README.md`。020 は `/revise` で推敲した。010 はシーン設計から書き直した（下の「文体と厚みの改善の経緯」） |
 | 作者の手直しを正典に戻す流れ | 010 の「未読十二件」の場面 → `canon/characters/shiori.md` の「恐れ」 |
 | 想定媒体の変更 | 制作途中で読み切り漫画をやめ、小説に切り替えた。`canon/premise.md` を `/canonize` で変更し、小説版を書き起こして `/finalize` で確定し直した |
+| キャラクターインタビュー（020 の時点の汐里。相手をナナに変えた問いもある） | `workshop/sessions/2026-10-07-interview-shiori.md` |
 | 壁打ちの記録とボツ案 | `workshop/sessions/`、`workshop/rejected.md` |
 
 ## 意図的に残しているもの
