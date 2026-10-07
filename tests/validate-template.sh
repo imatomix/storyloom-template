@@ -188,6 +188,7 @@ grep -q '書き込むのは `workshop/` だけ' "$interview" 2>/dev/null || fail
 grep -q '回収したシーンが時点より後' "$interview" 2>/dev/null || fail "/interview の漏洩防止が、時点までに回収されたかを基準にしていない"
 grep -q '最後に更新したシーン」より後' "$interview" 2>/dev/null || fail "/interview に、state.md より後の時点の扱いがない"
 grep -q '時点を決めてから読む' "$interview" 2>/dev/null || fail "/interview が、時点を決める前に状態記録を読んでしまう"
+grep -q '正典の候補を `workshop/ideas.md` に追記する' "$interview" 2>/dev/null || fail "/interview が、正典の候補を ideas.md に残していない（/status が拾えない）"
 for ref in story/state.md story/threads.md; do
   grep -q "$ref" "$interview" 2>/dev/null || fail "/interview が $ref を参照していない"
 done
