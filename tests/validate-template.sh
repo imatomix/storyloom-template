@@ -53,6 +53,7 @@ REQUIRED_FILES=(
   .claude/skills/draft/references/novel.md
   .claude/skills/draft/references/manga.md
   .claude/skills/finalize/SKILL.md
+  .claude/skills/interview/SKILL.md
   .claude/skills/develop/references/structure.md
 )
 
@@ -175,6 +176,14 @@ grep -q '急かされても' .claude/skills/kickoff/SKILL.md || fail "/kickoff �
 grep -q '集計から除く' .claude/skills/status/SKILL.md || fail "/status が state.md・threads.md を集計から除いていない"
 grep -q '付随して更新したファイル' .claude/skills/canonize/SKILL.md || fail "/canonize に、付随ファイルの status の扱いがない"
 grep -q 'related にこのシーン' "$finalize" || fail "/finalize に、台帳と状態記録の related 更新がない"
+
+interview=.claude/skills/interview/SKILL.md
+grep -q '知らないこと' "$interview" 2>/dev/null || fail "/interview に、その時点で知らないことは答えない規則がない"
+grep -q '漏らさない' "$interview" 2>/dev/null || fail "/interview に、伏線の答えを漏らさない規則がない"
+grep -q '書き込むのは `workshop/` だけ' "$interview" 2>/dev/null || fail "/interview に、書き込み先が workshop/ だけである規則がない"
+for ref in story/state.md story/threads.md; do
+  grep -q "$ref" "$interview" 2>/dev/null || fail "/interview が $ref を参照していない"
+done
 
 for heading in "## 作品全体の決めごと" "## 文体の見本"; do
   grep -qx "$heading" output/novel/README.md 2>/dev/null || fail "output/novel/README.md に見出し「${heading}」がない"
