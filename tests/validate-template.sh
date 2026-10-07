@@ -179,6 +179,10 @@ if [ -s "$related_ng" ]; then
 fi
 rm -f "$related_ng"
 
+kickoff=.claude/skills/kickoff/SKILL.md
+grep -q '選ばれなかったログライン案は `workshop/rejected.md`' "$kickoff" && fail "/kickoff が、選ばれなかっただけの案をボツとして rejected.md に記録している"
+grep -q '別案' "$kickoff" || fail "/kickoff が、選ばれなかった案を ideas.md に別案として残していない"
+
 finalize=.claude/skills/finalize/SKILL.md
 grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で登録済みの伏線との照合手順がない"
 grep -q '既に fixed' "$finalize" || fail "/finalize に、確定済みシーンの再確定の扱いがない"
