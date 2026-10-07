@@ -76,6 +76,7 @@ workshop/rejected.md に案 2 を理由付きで追加しました。
 3. 記入例は `examples/` を参照（不要になったら削除してかまいません）
    - `kaze-no-tegami/` — 短い作品。各ファイルの埋め方の見本
    - `shoutou-no-hi/` — 制作途中の作品。状態記録・伏線台帳・確定の運用の見本
+   - `yonjugo-rittoru/` — 書き始めの作品。`/kickoff` から最初のシーンの確定まで。`/interview` から正典にする流れの見本
 
 必要なもの: Claude Code、jq（canon/ 保護フックが使用。macOS 15 以降は標準で入っています。jq が無い環境では、すべての書き込みで確認が出ます）。Python 3 があれば `/revise` が文体を数値で計測します（無くても動きます）
 
@@ -175,10 +176,11 @@ bash tests/validate-template.sh
 
 ## 記入例について
 
-`examples/` の 2 作品は、どちらも AI（Claude）が作成したもので、人間の作者はいません。
+`examples/` の 3 作品は、どれも AI（Claude）が作成したもので、人間の作者はいません。
 
 - `kaze-no-tegami/` — テンプレートを作るときに、各ファイルの見本として Claude が書いた
 - `shoutou-no-hi/` — 動作確認（QA）の工程で作った。Claude が作者役として質問に答え、別の Claude Code のセッションがその答えを受けてコマンドを実行した
+- `yonjugo-rittoru/` — 同じく QA の工程で作った（`docs/qa/confirm3/`）。Claude が作者役として受け答えし、`claude -p` で実行した Claude Code がコマンドを動かした
 
 ## リポジトリの構成
 

@@ -42,6 +42,7 @@ When you work on a long story with AI:
 3. See `examples/` for reference (delete it whenever you like):
    - `kaze-no-tegami/` — a short piece showing how to fill in each file
    - `shoutou-no-hi/` — a work in progress showing how state, foreshadowing, and finalizing work over several scenes
+   - `yonjugo-rittoru/` — a work just getting started, from `/kickoff` to the first finalized scene, showing how `/interview` feeds into canon
 
 Requirements: Claude Code and jq (used by the canon guard hook; bundled with macOS 15 and later. Without jq, every write asks for confirmation). With Python 3, `/revise` measures prose style numerically (optional).
 
@@ -106,10 +107,11 @@ bash tests/validate-template.sh
 
 ## About the examples
 
-Both works in `examples/` were created by AI (Claude); there is no human author.
+All three works in `examples/` were created by AI (Claude); there is no human author.
 
 - `kaze-no-tegami/` — written by Claude as a reference while building the template
 - `shoutou-no-hi/` — created during QA: Claude played the author and answered the questions, and a separate Claude Code session ran the commands in response
+- `yonjugo-rittoru/` — also created during QA (`docs/qa/confirm3/`): Claude played the author, and Claude Code run with `claude -p` executed the commands
 
 ## Repository layout
 
