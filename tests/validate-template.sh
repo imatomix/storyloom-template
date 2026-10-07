@@ -183,6 +183,9 @@ kickoff=.claude/skills/kickoff/SKILL.md
 grep -q '選ばれなかったログライン案は `workshop/rejected.md`' "$kickoff" && fail "/kickoff が、選ばれなかっただけの案をボツとして rejected.md に記録している"
 grep -q '別案' "$kickoff" || fail "/kickoff が、選ばれなかった案を ideas.md に別案として残していない"
 
+grep -q '→ 正典' .claude/skills/canonize/SKILL.md || fail "/canonize が、正典に入れた ideas.md の候補に印を付けていない"
+grep -q '→ 正典' .claude/skills/status/SKILL.md || fail "/status が、正典に入れた ideas.md の候補を処理済みとして扱っていない"
+
 finalize=.claude/skills/finalize/SKILL.md
 grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で登録済みの伏線との照合手順がない"
 grep -q '既に fixed' "$finalize" || fail "/finalize に、確定済みシーンの再確定の扱いがない"
