@@ -161,6 +161,30 @@ for doc in CLAUDE.md README.md README.en.md; do
   grep -q '/interview' "$doc" 2>/dev/null || fail "$doc に /interview の説明がない"
 done
 grep -q '/interview' .claude/skills/develop/SKILL.md || fail "/develop がキャラの次の一手に /interview を案内していない"
+grep -q '時点はシーン番号' .claude/skills/develop/SKILL.md || fail "/develop の /interview の案内に、時点の書き方がない"
+
+grep -q 'リポジトリのルートからのパス' CLAUDE.md || fail "CLAUDE.md に、related をルートからのパスで書く規則がない"
+related_ng=$(mktemp)
+while IFS= read -r f; do
+  sed -n '2,/^---$/p' "$f" | awk '/^related:/{r=1;next} /^[a-z_]+:/{r=0} r && /^  - /{print}' | sed 's/^  - //' | while IFS= read -r rel; do
+    case "$rel" in
+      canon/*|story/*|output/*|workshop/*) ;;
+      *) echo "NG: $f: related の「${rel}」がリポジトリのルートからのパスでない" ;;
+    esac
+  done
+done < <(find canon story output examples/*/canon examples/*/story examples/*/output -name '*.md' ! -name 'README.md' 2>/dev/null) > "$related_ng"
+if [ -s "$related_ng" ]; then
+  cat "$related_ng"
+  failures=$((failures + $(wc -l < "$related_ng")))
+fi
+rm -f "$related_ng"
+
+kickoff=.claude/skills/kickoff/SKILL.md
+grep -q '選ばれなかったログライン案は `workshop/rejected.md`' "$kickoff" && fail "/kickoff が、選ばれなかっただけの案をボツとして rejected.md に記録している"
+grep -q '別案' "$kickoff" || fail "/kickoff が、選ばれなかった案を ideas.md に別案として残していない"
+
+grep -q '→ 正典' .claude/skills/canonize/SKILL.md || fail "/canonize が、正典に入れた ideas.md の候補に印を付けていない"
+grep -q '→ 正典' .claude/skills/status/SKILL.md || fail "/status が、正典に入れた ideas.md の候補を処理済みとして扱っていない"
 
 finalize=.claude/skills/finalize/SKILL.md
 grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で登録済みの伏線との照合手順がない"

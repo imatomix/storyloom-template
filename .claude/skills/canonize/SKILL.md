@@ -19,6 +19,6 @@ disable-model-invocation: true
    - 正典の変更で影響を受ける story/・output/ のファイルがあれば、一覧にして示す（ここでは書き換えない）
 4. 作者の承認を待つ。部分的な承認なら承認された分だけ進める。**承認がないまま canon/ に書かない**
 5. 書き込む。frontmatter の `status` は作者の指示どおり（指定がなければ `fixed`）、`updated` は今日。付随して更新したファイル（glossary.md・timeline.md・関係するキャラなど）の status も、主ファイルに揃えるかを作者に確認する
-6. 昇格元の下書き（`workshop/drafts/...`）は削除してよいか作者に確認する
+6. 昇格元の下書き（`workshop/drafts/...`）は削除してよいか作者に確認する。`workshop/ideas.md` の候補を正典に入れた場合は、その項目の末尾に `（→ 正典 YYYY-MM-DD）` を付ける（消さない。どこから来た設定かを残すため）
 7. 影響を受ける story/・output/ がある場合は `/check` を提案する
 8. コミットを提案する。メッセージ例: `正典: <対象> を追加`

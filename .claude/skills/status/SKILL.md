@@ -13,7 +13,7 @@ description: canon/・story/・output/ の frontmatter の status を集計し�
 2. 現在地を把握する
    - `canon/premise.md` が draft のまま → 前提が固まっていない
    - キャラ・世界観が少ない、シーンが少ない、シーンはあるが output が無い、など
-   - `workshop/ideas.md` に溜まっている未処理のアイデア
+   - `workshop/ideas.md` に溜まっている未処理のアイデア（末尾に `（→ 正典 …）` が付いた項目は処理済みなので除く）
    - 各ファイルの `## 未確定の点` と STATUS.md の既存の「未解決の問い」
    - `story/threads.md` の伏線: 状態 open の数と、回収予定のシーンが既に確定（status: fixed）しているのに open のままのもの
 3. STATUS.md を更新する
