@@ -1,6 +1,6 @@
 ---
 name: canonize
-description: workshop/ の下書きや会話で固まった案を、作者の承認を得て canon/（正典）に昇格させる。関連する用語集・年表・他キャラの関係欄も合わせて更新する。canon/ を変更する唯一の正規の手段。
+description: workshop/ の下書きや会話で固まった案を、作者の承認を得て canon/（正典）に昇格させる。関連する用語集・年表・他キャラの関係欄も合わせて更新する。canon/ を変更する正規の手段（作品の前提 premise.md だけは /kickoff でも書く）。
 argument-hint: "<ファイルパス または 案の要約>"
 disable-model-invocation: true
 ---
