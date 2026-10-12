@@ -192,6 +192,11 @@ grep -q '台帳の既存行' "$finalize" || fail "/finalize に、/develop で�
 grep -q '既に fixed' "$finalize" || fail "/finalize に、確定済みシーンの再確定の扱いがない"
 grep -q '対象より後のシーン' "$finalize" || fail "/finalize に、後のシーンの状態を上書きしない規則がない"
 grep -q '骨格の修正案' "$finalize" || fail "/finalize に、原稿と骨格の食い違いの同期がない"
+grep -q 'どの行に響くか' "$finalize" || fail "/finalize が、過去シーンの再確定を後のシーンの記録に反映する案を出さない"
+
+draft=.claude/skills/draft/SKILL.md
+grep -q '直前の時点' "$draft" || fail "/draft が、対象シーンの直前の時点の状態を組み立てない（後のシーンの状態が混ざる）"
+grep -q '張ったシーンが対象シーンより後' "$draft" || fail "/draft が、対象シーンより後で張られる伏線を除いていない"
 grep -q '行は消さず' story/threads.md || fail "story/threads.md に、行を消さず dropped にする規則がない"
 grep -E '^\| `story/` .*/finalize' CLAUDE.md >/dev/null || fail "CLAUDE.md の story/ の行に /finalize がない"
 grep -E '^\| `output/` .*/finalize' CLAUDE.md >/dev/null || fail "CLAUDE.md の output/ の行に /finalize がない"
