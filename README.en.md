@@ -20,7 +20,7 @@ When you work on a long story with AI:
 ## How it prevents that
 
 - **Files are separated by how settled they are.** Settled facts go in `canon/`, the story outline in `story/`, ideas under consideration in `workshop/`, manuscripts in `output/`.
-- **Only the author can settle things.** The canon changes only when the author approves it through `/canonize`. A hook asks for confirmation every time Claude tries to write there.
+- **Only the author can settle things.** The canon is meant to take only changes the author approves through `/canonize`. A hook asks the author for confirmation every time Claude tries to write there (the hook checks only where the write goes, so the author confirms that the content matches what was approved; see the limitations under [Canon guard](#canon-guard)).
 - **State and foreshadowing are tracked, and contradictions are found.** Each time a manuscript is finalized (`/finalize`), character state and the foreshadowing ledger are updated. `/check` lists contradictions in settings and timeline, and unresolved setups.
 - **The author decides.** Claude asks questions and offers two or three options. The author chooses.
 - **Your work is a Git repository.** You can trace when and how the canon changed.
@@ -97,7 +97,9 @@ Novel style is set in `output/novel/README.md`: style rules (point of view, tens
 ## Canon guard
 
 Whenever Claude edits or writes a file under `canon/`, a hook (`.claude/hooks/guard-canon.sh`) asks for confirmation, even in auto-accept modes.
-Known limitation: writes through Bash commands are not covered by the hook (CLAUDE.md tells Claude not to do this).
+Known limitations:
+- Writes through Bash commands are not covered by the hook (CLAUDE.md tells Claude not to do this)
+- The hook checks only the destination path. It does not know whether `/canonize` is running or whether the content matches the diff that was shown. When it asks, review the content before approving
 
 ## Testing the template
 
